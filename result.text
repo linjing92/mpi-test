@@ -1,0 +1,515 @@
+
+I am 6 out of 12
+I am 7 out of 12
+I am 0 out of 12
+I am 2 out of 12
+I am 8 out of 12
+I am 1 out of 12
+I am 11 out of 12
+I am 3 out of 12
+I am 9 out of 12
+I am 4 out of 12
+I am 10 out of 12
+I am 5 out of 12
+w is0  w is1  w is2  w is3 
+ 12
+12
+12
+0
+w is0  w is1  w is2  w is3 
+ w is0  w is1  w is2  w is3 
+ w is0  w is1  w is2  w is3  
+w is0  w is1  w is2  w is3  
+w is0  w is1  w is2  w is3 
+ w is0  w is1  w is2  w is3 
+ w is0  w is1  w is2  w is3  
+w is0  w is1  w is2  w is3 
+ w is0  w is1  w is2  w is3  
+w is0  w is1  w is2  w is3  
+w is0  w is1  w is2  w is3
+
+
+
+4node 3core 5min 
+#include <iostream>
+#include<cstdlib>
+#include<mpi.h>
+using namespace std;
+
+int main(int argc, char* argv[])
+{
+
+    int sum[4]={0,0,0,0};
+    int w,k,id,nodesnumber,j;
+
+    MPI::Init(argc,argv);
+    id = MPI::COMM_WORLD.Get_rank ( );
+    nodesnumber = MPI::COMM_WORLD.Get_size ( );
+
+    int A[4]={0,0,0,0};
+    cout << "I am " << id << " out of " << nodesnumber << endl;
+
+    for(w=0;w<4;w++){
+            cout<<"w is"<<w<<"  ";
+        for(j=0;j<10;j++){
+        if(j==w+7){
+        A[w]=A[w]+1;}}}
+
+    for(k=0;k<4;k++)
+        MPI::COMM_WORLD.Reduce(&A[k],&sum[k],1,MPI::INT,MPI::SUM,0);
+
+    MPI::Finalize ( );
+
+    if(id==0)
+        for(k=0;k<4;k++)
+    cout << sum[k] << endl;
+
+}
+
+I am 0 out of 12
+w is0 
+ I am 0 out of 12
+w is1  
+I am 0 out of 12
+w is2
+  I am 0 out of 12
+W is 3
+
+
+I am 1 out of 12
+w is0 
+ I am 1 out of 12
+w is1 
+ I am 1 out of 12
+w is2 
+ I am 1 out of 12
+W is 3
+
+I am 2 out of 12
+w is0 
+ I am 2 out of 12
+w is1  
+I am 2 out of 12
+w is2
+  I am 2 out of 12
+
+I am 9 out of 12
+w is0 
+ I am 9 out of 12
+w is1  
+I am 9 out of 12
+w is2 
+ I am 9 out of 12
+
+
+I am 10 out of 12
+w is0 
+ I am 10 out of 12
+w is1 
+ I am 10 out of 12
+w is2  
+I am 10 out of 12
+
+I am 7 out of 12
+w is0 
+ I am 7 out of 12
+w is1  
+I am 7 out of 12
+w is2  
+I am 7 out of 12
+
+I am 8 out of 12
+w is0
+  I am 8 out of 12
+w is1  
+I am 8 out of 12
+w is2  
+I am 8 out of 12
+
+I am 11 out of 12
+w is0  
+I am 11 out of 12
+w is1 
+ I am 11 out of 12
+w is2 
+ I am 11 out of 12
+
+I am 3 out of 12
+w is0
+  I am 3 out of 12
+w is1 
+ I am 3 out of 12
+w is2 
+ I am 3 out of 12
+
+I am 4 out of 12
+w is0 
+ I am 4 out of 12
+w is1 
+ I am 4 out of 12
+w is2
+  I am 4 out of 12
+
+I am 5 out of 12
+w is0
+  I am 5 out of 12
+w is1 
+ I am 5 out of 12
+w is2 
+ I am 5 out of 12
+
+I am 6 out of 12
+w is0 
+ I am 6 out of 12
+w is1 
+ I am 6 out of 12
+w is2  
+I am 6 out of 12
+
+w is3  
+w is3  w is3  12
+12
+12
+0
+w is3  w is3  w is3  w is3  w is3  w is3  w is3  w is3  w is3
+
+4nodes 3cores 5min
+#include <iostream>
+#include<cstdlib>
+#include<mpi.h>
+using namespace std;
+
+int main(int argc, char* argv[])
+{
+
+    int sum[4]={0,0,0,0};
+
+int id, nodesnumber;
+    MPI::Init(argc,argv);
+    id = MPI::COMM_WORLD.Get_rank ( );
+    nodesnumber = MPI::COMM_WORLD.Get_size ( );
+    int w,k,j;
+    int A[4]={0,0,0,0};
+
+
+    for(w=0;w<4;w++){
+        cout << "I am " << id << " out of " << nodesnumber << endl;
+            cout<<"w is"<<w<<"  ";
+        for(j=0;j<10;j++){
+        if(j==w+7){
+        A[w]=A[w]+1;}}}
+
+    for(k=0;k<4;k++)
+        MPI::COMM_WORLD.Reduce(&A[k],&sum[k],1,MPI::INT,MPI::SUM,0);
+
+    MPI::Finalize ( );
+
+    if(id==0)
+        for(k=0;k<4;k++)
+    cout << sum[k] << endl;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+task is2out of12
+weight is  1
+
+task is6out of12
+weight is  1
+
+task is10out of12
+weight is  1
+
+task is3out of12
+weight is  1
+
+task is1out of12
+
+task is8out of12
+
+task is9out of12
+
+task is0out of12
+
+task is4out of12
+
+task is7out of12
+
+task is11out of12
+weight is  1
+
+task is5out of12
+weight is  1
+weight is  1
+weight is  1
+weight is  1
+weight is  1
+weight is  1
+weight is  1
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+weight is  2
+error is  2336  decoded is  2336
+weight is  2
+error is  2336  decoded is  2336
+weight is  2
+error is  2336  decoded is  2336
+weight is  2
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+weight is  2
+error is  2336  decoded is  2336
+weight is  2
+weight is  2
+error is  2336  decoded is  2336
+weight is  2
+weight is  2
+weight is  2
+weight is  2
+weight is  2
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+error is  2336  decoded is  2336
+
+wt=3master mistake is0
+
+
+
+
+
+
+
+
+
+
+task is7out of12
+
+task is11out of12
+
+task is4out of12
+
+task is0out of12
+
+task is8out of12
+
+task is5out of12
+
+task is10out of12
+
+task is6out of12
+
+task is1out of12
+
+task is3out of12
+
+task is9out of12
+
+task is2out of12
+weight is  1
+error is  454  1622  decoded is  454
+1622
+error is  2236  decoded is  2236
+error is  377  decoded is  377
+error is  2319  decoded is  2319
+weight is  2
+error is  298  318  decoded is  298
+318
+error is  541  692  1709  1860  decoded is  541
+692
+1709
+1860
+error is  195  389  1557  decoded is  195
+389
+1557
+error is  18  721  1889  decoded is  18
+721
+1889
+
+wt=3master mistake is0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+task is6out of12
+
+task is11out of12
+
+task is7out of12
+
+task is9out of12
+
+task is10out of12
+
+task is8out of12
+
+task is0out of12
+
+task is4out of12
+
+task is3out of12
+
+task is5out of12
+
+task is2out of12
+weight is  1
+
+task is1out of12
+error is  308  decoded is  308
+error is  1981  decoded is  1981
+error is  2286  decoded is  2286
+error is  590  1758  decoded is  590
+1758
+weight is  2
+error is  306  728  1896  decoded is  306
+728
+1896
+error is  1995  2149  decoded is  1995
+2149
+error is  2117  2278  decoded is  2117
+2278
+error is  176  2070  decoded is  176
+2070
+
+wt=3master mistake is0
+
+
+
+
+
+
+
+
+
+
+
+
+
+gen1 302857253 2975904217 4216413801 4287035861 684595058 536429055 1671528609 3236781863 4018982204 219984100 2369244670 2250514551 2161273653 2430974912 376169880 4254592263 2246289060 1032426895 1396344957 881210623 2454216623 192697430 2810792964 788804725 2548977473 3896844424 696072689 2751518000 315219670 3518984331 2809671110 1396961907 4021004570 2548504574 2447790734 601849183 1121799583 2536189307 162378211 1726917046 754771035 3094858512 141410372 17645311 3454620103 103491201 2636307 829953198 3224585942 284553018 1352887316 367255932 284643872 3412494037 360036516 
+gen2 302857253 2975904217 4216413801 4287035861 684595058 536429055 1671528609 3236781863 4018982204 219984100 2369244670 2250514551 2161273653 2430974912 376169880 4254592263 2246289060 1032426895 1396344957 881210623 2454216623 192697430 2810792964 788804725 2548977473 3896844424 696072689 2751518000 315219670 3518984331 2809671110 1396961907 4021004570 2548504574 2447790734 601849183 1121799583 2536189307 162378211 1726917046 754771035 3094858512 141410372 17645311 3454620103 103491201 2636307 829953198 3224585942 284553018 1352887316 367255932 284643872 3412494037 360036516 gen1determin3gen2determin3
+Process returned 0 (0x0)   execution time : 3.781 s
+Press any key to continue.
+
+
+
+
+
+
+
+
+
+
+
+
+
+

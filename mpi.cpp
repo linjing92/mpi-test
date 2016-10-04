@@ -1,0 +1,35 @@
+#include <iostream>
+#include<cstdlib>
+#include<mpi.h>
+using namespace std;
+
+int main(int argc, char* argv[])
+{
+
+    int sum[4]={0,0,0,0};
+
+int id, nodesnumber;
+    MPI::Init(argc,argv);
+    id = MPI::COMM_WORLD.Get_rank ( );
+    nodesnumber = MPI::COMM_WORLD.Get_size ( );
+    int w,k,j;
+    int A[4]={0,0,0,0};
+
+
+    for(w=0;w<4;w++){
+        cout << "I am " << id << " out of " << nodesnumber << endl;
+            cout<<"w is"<<w<<"  ";
+        for(j=0;j<10;j++){
+        if(j==w+7){
+        A[w]=A[w]+1;}}}
+
+    for(k=0;k<4;k++)
+        MPI::COMM_WORLD.Reduce(&A[k],&sum[k],1,MPI::INT,MPI::SUM,0);
+
+    MPI::Finalize ( );
+
+    if(id==0)
+        for(k=0;k<4;k++)
+    cout << sum[k] << endl;
+
+}
